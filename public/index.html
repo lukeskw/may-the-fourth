@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Star Wars Day</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png" sizes="256x256">
+</head>
+
+<body>
+
+    <div class="botao" onclick="start_app()">Iniciar</div>
+    <canvas id="snow"></canvas>
+    <section class="intro intro_texto">
+        A Long Time Ago, in a galaxy far, <br>far away ...
+    </section>
+    <section class="paragrafos">
+        <div class="historia historia_texto">
+            <p class="text-center">Star Wars Episode XXI</p>
+            <p class="text-center">Luke Celebrates A Special Day</p>
+            <br>
+            <p class="text-center">
+                It's a period of peace and freedom. So today we celebrate and thank for this incredible saga. Today there is no side and no war!
+            </p>
+            <p class="text-center">
+                Happy Star Wars Day, and May the Fourth be with you, always...
+            </p>
+        </div>
+    </section>
+    <audio src="https://raw.githubusercontent.com/lukeskw/may-the-fourth/main/starwars.mp3" id="som"></audio>
+
+    <script>
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        const intro = document.getElementsByClassName('intro')[0];
+        const historia = document.getElementsByClassName('historia')[0];
+        const paragrafos = document.getElementsByClassName('paragrafos')[0];
+        const som = document.getElementById('som');
+        intro.style.fontSize = width / 30 + 'px';
+        historia.style.fontSize = width / 20 + 'px';
+        paragrafos.style.height = height + 'px';
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            intro.style.fontSize = width / 30 + 'px';
+            historia.style.fontSize = width / 20 + 'px';
+            paragrafos.style.height = height + 'px';
+        });
+
+        function start_app() {
+            intro.className = 'intro intro_texto intro_animacao';
+            historia.className = 'historia historia_texto historia_animacao';
+            som.play();
+        }
+
+        /* canvas com estrelas aleatórias */
+        let canvas = document.getElementById('snow');
+        const ctx = canvas.getContext('2d');
+        canvas.width = width;
+        canvas.height = height;
+        const num = 100;
+        const size = 2;
+        const elements = [];
+
+        function start() {
+            for (let i = 0; i < num; i++) {
+                elements[i] = {
+                    x: Math.ceil(Math.random() * width),
+                    y: Math.ceil(Math.random() * height),
+                    size: Math.random() * size,
+                };
+            }
+        }
+
+        function stars() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < num; i++) {
+                const e = elements[i];
+                ctx.beginPath();
+                ctx.fillStyle = '#FFFFFF';
+                ctx.arc(e.x, e.y, e.size, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+        start();
+        stars();
+    </script>
+</body>
+
+</html>
