@@ -6,7 +6,7 @@
 <div align="center">May the Fourth be with You!</div>
 <br>
 
-<div align="center">To see the project running, click <a href="https://starwarsproject.z22.web.core.windows.net">here</a></div>
+<div align="center">To see the project running, click <a target="_blank" href="https://starwarsproject.z22.web.core.windows.net">here</a></div>
 <br>
 
 
